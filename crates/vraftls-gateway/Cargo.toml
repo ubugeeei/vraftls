@@ -1,0 +1,23 @@
+[package]
+name = "vraftls-gateway"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "vraftls-gateway"
+path = "src/main.rs"
+
+[dependencies]
+vraftls-core = { workspace = true }
+vraftls-lsp = { workspace = true }
+vraftls-vfs = { workspace = true }
+tokio = { workspace = true }
+tower-lsp = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }

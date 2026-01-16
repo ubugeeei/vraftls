@@ -1,0 +1,76 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/vraftls-core",
+    "crates/vraftls-raft",
+    "crates/vraftls-vfs",
+    "crates/vraftls-lsp",
+    "crates/vraftls-cache",
+    "crates/vraftls-cluster",
+    "crates/vraftls-node",
+    "crates/vraftls-gateway",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["ubugeeei"]
+license = "MIT"
+repository = "https://github.com/ubugeeei/vraftls"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Raft consensus
+openraft = { version = "0.9", features = ["serde"] }
+
+# LSP
+tower-lsp = "0.20"
+lsp-types = "0.95"
+
+# HTTP
+axum = { version = "0.7", features = ["macros"] }
+reqwest = { version = "0.12", features = ["json"] }
+tower = "0.4"
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Storage
+rocksdb = "0.22"
+
+# Caching
+moka = { version = "0.12", features = ["future"] }
+dashmap = "6"
+
+# Consistent hashing
+hashring = "0.3"
+
+# Error handling
+thiserror = "1"
+anyhow = "1"
+
+# Logging & tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Testing
+tokio-test = "0.4"
+
+# Internal crates
+vraftls-core = { path = "crates/vraftls-core" }
+vraftls-raft = { path = "crates/vraftls-raft" }
+vraftls-vfs = { path = "crates/vraftls-vfs" }
+vraftls-lsp = { path = "crates/vraftls-lsp" }
+vraftls-cache = { path = "crates/vraftls-cache" }
+vraftls-cluster = { path = "crates/vraftls-cluster" }
+
+[profile.release]
+lto = true
+codegen-units = 1
